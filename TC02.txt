@@ -1,0 +1,52 @@
+package pop_up;
+
+import java.util.Set;
+
+import java.util.Iterator;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import all_url.Links;
+
+public class Child_browser_popup_Handle {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		System.setProperty("webdriver.chrome.driver", Links.driverPath);
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://demoqa.com/browser-windows");
+		driver.manage().window().maximize();
+		
+		driver.findElement(By.xpath("//button[text()='New Window']")).click();
+		
+		Thread.sleep(2000);
+		Set<String> ids = driver.getWindowHandles();
+		
+		Iterator<String> wind = ids.iterator();
+		
+		wind.hasNext();
+
+		String first_window = wind.next();
+		String second_window = wind.next();
+		driver.switchTo().window(second_window);
+		driver.manage().window().maximize();
+		Thread.sleep(2000);
+		driver.switchTo().window(first_window);
+		Thread.sleep(2000);
+		driver.switchTo().window(second_window);
+		
+//		while(wind.hasNext()) {
+//			
+//			
+//			
+//		}
+		
+		
+		
+		
+		
+	}
+
+}
